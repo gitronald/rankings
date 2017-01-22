@@ -8,10 +8,10 @@ def alphanumerics():
     """Generate all upper and lowercase letters and digits"""
     return string.ascii_letters + string.digits
 
-def random_string(length, selection = None):
+def random_string(length, replacement = False, selection = None):
     """Generate a random string of alphanumerics"""
     selection = list(alphanumerics()) if selection is None else selection
-    return ''.join(np.random.choice(selection, length, replace=False))
+    return ''.join(np.random.choice(selection, length, replace=replacement))
 
 def compare_ranks(list1, list2):
     """Compare two ranked lists
