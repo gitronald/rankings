@@ -7,7 +7,7 @@ from __future__ import division
 from string import ascii_letters, digits
 from jellyfish import damerau_levenshtein_distance
 from numpy import random
-__author__ = """Ronald E Robertson (robertson.ron@husky.neu.edu)"""
+__author__ = """Ronald E. Robertson (robertson.ron@husky.neu.edu)"""
 __all__ = ['alphanumerics',
            'random_string',
            'generate_alphanum_dict',
@@ -51,6 +51,18 @@ def rank_as_string(list1, alphanum_index):
     """
     return ''.join([alphanum_index[l] for l in list1])
     
+def jaccard_index(list1, list2, digits=3):
+    """Calculate Jaccard Index
+    The size of the intersection over the size of the union of two lists. Provides a similarity measure of two 
+           lists without regard to order    
+    
+    """
+    intersection = set(list1).intersection(set(list2))
+    union = set(list1).union(set(list2))
+    j = float(len(intersection)) / float(len(union))
+    j = round(j, digits)
+    return j
+    
 def compare_ranks(list1, list2):
     """Compare two ranked lists
 
@@ -89,20 +101,14 @@ def compare_ranks(list1, list2):
     			 of spelling errors. CACM, 7(3), 1964.
 
     """
+    j = jaccard_index(list1, list2)
     
-    intersection = set(list1).intersection(set(list2))
     union = set(list1).union(set(list2))
-    j = len(intersection) / len(union)
-    j = round(j, 3)
-
     alphanum_dict = generate_alphanum_dict(union)  
-    str1 = rank_as_string(list1, alphanum_dict)
-    str2 = rank_as_string(list2, alphanum_dict)
-    dist = damerau_levenshtein_distance(unicode(str1), unicode(str2))
+    strings = map(lambda x : rank_as_string(x, alphanum_dict), [list1, list2])
+    dist = damerau_levenshtein_distance(unicode(strings[0]), unicode(strings[1]))
 
-    print "list1:  %s    len: %d" % (str1, len(str1))
-    print "list1:  %s    len: %d" % (str2, len(str2))
+    for i, string in enumerate(strings):
+        print "list%d: %s  len: %d" % (i, string, len(string))
+        
     return (j, dist)
-
-
-
