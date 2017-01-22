@@ -89,7 +89,7 @@ def compare_ranks(list1, list2):
     >>> list1 = ['sam', 'sue', 'stew', 'baloo', 'baloo']
     >>> list2 = ['sue', 'sam', 'baloo', 'new', 'baloo']
     >>> compare_ranks(list1, list2)
-    (0.0, 3)
+    (0.6, 3)
 
     Notes
     -----
