@@ -11,7 +11,7 @@ Development
 Download
 --------
 
-To install the git version run:
+To install the git version:
 
 ::
 
@@ -23,7 +23,7 @@ To install the git version run:
 Usage
 -----
 
-A quick example that finds the shortest path between two nodes in an undirected graph::
+A quick example comparing two lists of names ::
 
    >>> import rankings
    >>> list1 = ['sam', 'sue', 'stew', 'baloo', 'baloo']
@@ -45,5 +45,5 @@ License
 
 Distributed with a BSD license; see LICENSE::
 
-   Copyright (C) 2017 Ronald E. Robertson <rer@ronalderobertson.com>
+   Copyright (C) 2017 Ronald E. Robertson <robertson.ron@husky.neu.edu>
 
